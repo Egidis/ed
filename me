@@ -1,0 +1,13 @@
+import os
+
+path = "/путь/к/директории"  # замените на ваш путь
+
+# получаем список папок в директории и сортируем их по алфавиту
+folders = sorted([f for f in os.listdir(path) if os.path.isdir(os.path.join(path, f))])
+
+# создаем словарь, где ключ - текущее имя папки, значение - новое имя папки по алфавиту
+new_names = {folders[i]: chr(i + ord('A')) for i in range(len(folders))}
+
+# переименовываем папки
+for folder in folders:
+    os.rename(os.path.join(path, folder), os.path.join(path, new_names[folder]))
